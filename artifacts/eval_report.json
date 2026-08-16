@@ -1,0 +1,97 @@
+{
+  "checkpoints": {
+    "diffusion": "E:\\Report Writing Project\\diffuchat\\artifacts\\diffusion_lm.pt",
+    "ar": "E:\\Report Writing Project\\diffuchat\\artifacts\\ar_baseline.pt"
+  },
+  "diffusion_val_loss": 2.57002592872213,
+  "ar_val_loss": 1.5536435842514038,
+  "experiment_1": {
+    "n_windows": 40,
+    "steps": 10,
+    "random_guess_rate": 0.015384615384615385,
+    "most_common_char": " ",
+    "token_recovery": {
+      "1": {
+        "diffusion": 0.625,
+        "freq": 0.225,
+        "ar": 0.725
+      },
+      "2": {
+        "diffusion": 0.4125,
+        "freq": 0.175,
+        "ar": 0.5
+      },
+      "4": {
+        "diffusion": 0.24375,
+        "freq": 0.18125,
+        "ar": 0.33125
+      },
+      "8": {
+        "diffusion": 0.165625,
+        "freq": 0.146875,
+        "ar": 0.1875
+      },
+      "16": {
+        "diffusion": 0.1078125,
+        "freq": 0.125,
+        "ar": 0.1484375
+      }
+    },
+    "full_span_exact": {
+      "1": {
+        "diffusion": 0.625,
+        "freq": 0.225,
+        "ar": 0.725
+      },
+      "2": {
+        "diffusion": 0.275,
+        "freq": 0.0,
+        "ar": 0.35
+      },
+      "4": {
+        "diffusion": 0.0,
+        "freq": 0.0,
+        "ar": 0.1
+      },
+      "8": {
+        "diffusion": 0.0,
+        "freq": 0.0,
+        "ar": 0.0
+      },
+      "16": {
+        "diffusion": 0.0,
+        "freq": 0.0,
+        "ar": 0.0
+      }
+    }
+  },
+  "experiment_2": {
+    "n_windows": 24,
+    "span_len": 8,
+    "token_recovery": {
+      "confidence|steps=5": 0.14583333333333334,
+      "confidence|steps=10": 0.19270833333333334,
+      "confidence|steps=20": 0.17708333333333334,
+      "confidence|steps=40": 0.15625,
+      "random|steps=5": 0.18229166666666666,
+      "random|steps=10": 0.13541666666666666,
+      "random|steps=20": 0.14583333333333334,
+      "random|steps=40": 0.140625,
+      "semi_ar|steps=5": 0.17708333333333334,
+      "semi_ar|steps=10": 0.16666666666666666,
+      "semi_ar|steps=20": 0.15104166666666666,
+      "semi_ar|steps=40": 0.20833333333333334
+    }
+  },
+  "experiment_3": {
+    "n_windows": 30,
+    "span_len": 8,
+    "pin_survival_rate": 1.0,
+    "mean_ce_unedited": 5.177471121152242,
+    "mean_ce_edited": 4.152688054243724,
+    "token_recovery_unedited": 0.17083333333333334,
+    "token_recovery_edited": 0.32083333333333336,
+    "ce_improved_fraction": 0.8
+  },
+  "wall_time_s": 11.9
+}

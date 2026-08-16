@@ -1,0 +1,28 @@
+# Normalize line endings across platforms (repo is developed on Windows)
+* text=auto
+
+# Sources & docs always LF
+*.py     text eol=lf
+*.ipynb  text eol=lf
+*.md     text eol=lf
+*.toml   text eol=lf
+*.txt    text eol=lf
+*.json   text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+*.sh     text eol=lf
+
+# Windows scripts keep CRLF
+*.bat    text eol=crlf
+*.ps1    text eol=crlf
+
+# Binaries
+*.pt     binary
+*.pth    binary
+*.png    binary
+*.jpg    binary
+*.gif    binary
+*.zip    binary
+
+# Linguist: this is a Python research project
+*.ipynb  linguist-language=Python

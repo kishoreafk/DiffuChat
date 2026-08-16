@@ -1,0 +1,6 @@
+# DiffuChat runtime deps (install into the repo venv, NOT system python)
+# torch must come from the CPU index:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch
+numpy
+pytest
