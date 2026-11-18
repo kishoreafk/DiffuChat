@@ -1,0 +1,17 @@
+{
+  "code_file": "train.py",
+  "competition_sources": [],
+  "dataset_sources": [
+    "kishore00afk/diffuchat-token-cache"
+  ],
+  "enable_gpu": true,
+  "enable_internet": true,
+  "id": "kishore00afk/diffuchat-generalization-v3",
+  "is_private": true,
+  "kernel_sources": [],
+  "kernel_type": "script",
+  "language": "python",
+  "machine_shape": "NvidiaTeslaT4",
+  "model_sources": [],
+  "title": "DiffuChat Generalization v3"
+}

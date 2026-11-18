@@ -1,0 +1,247 @@
+{
+  "config": {
+    "experiment": "E1+E2 WikiText-103",
+    "vocab_size_bpe": 8192,
+    "special_tokens": [
+      "[MASK]",
+      "<|eos|>"
+    ],
+    "block_size": 256,
+    "batch_size": 16,
+    "steps_per_model": 2500,
+    "eval_every": 250,
+    "val_batches": 24,
+    "val_batch_size": 32,
+    "lr": 0.0003,
+    "warmup": 200,
+    "weight_decay": 0.1,
+    "grad_clip": 1.0,
+    "mask_ratio_min": 0.05,
+    "mask_ratio_max": 1.0,
+    "d_model": 384,
+    "n_layer": 8,
+    "n_head": 8,
+    "dropout": 0.0,
+    "rel_pos_bias": true,
+    "seed": 42,
+    "amp": "fp16"
+  },
+  "environment": {
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130",
+    "cuda": "13.0",
+    "device_count": 2,
+    "params_note": "both models architecture-matched"
+  },
+  "data": {
+    "corpus": "Salesforce/wikitext wikitext-103-raw-v1 (official train/validation)",
+    "train_tokens": 135430574,
+    "val_tokens": 282494,
+    "tokenizer": "byte-level BPE",
+    "vocab_total": 8192,
+    "mask_id": 0,
+    "block_size": 256
+  },
+  "diffusion": {
+    "n_params": 17473216,
+    "best_val_loss": 6.824284136295319,
+    "history": [
+      {
+        "step": 250,
+        "train_loss": 7.290436744689941,
+        "val_loss": 7.229912221431732,
+        "elapsed_s": 204.0
+      },
+      {
+        "step": 500,
+        "train_loss": 7.051548957824707,
+        "val_loss": 7.177230179309845,
+        "elapsed_s": 218.8
+      },
+      {
+        "step": 750,
+        "train_loss": 7.243462085723877,
+        "val_loss": 7.091365456581116,
+        "elapsed_s": 233.9
+      },
+      {
+        "step": 1000,
+        "train_loss": 7.0677056312561035,
+        "val_loss": 7.032208502292633,
+        "elapsed_s": 249.3
+      },
+      {
+        "step": 1250,
+        "train_loss": 6.937142848968506,
+        "val_loss": 6.96212104956309,
+        "elapsed_s": 264.9
+      },
+      {
+        "step": 1500,
+        "train_loss": 6.790950775146484,
+        "val_loss": 6.9082180460294085,
+        "elapsed_s": 280.7
+      },
+      {
+        "step": 1750,
+        "train_loss": 6.989252090454102,
+        "val_loss": 6.867695649464925,
+        "elapsed_s": 296.9
+      },
+      {
+        "step": 2000,
+        "train_loss": 6.883188724517822,
+        "val_loss": 6.84145309527715,
+        "elapsed_s": 313.0
+      },
+      {
+        "step": 2250,
+        "train_loss": 6.7256388664245605,
+        "val_loss": 6.826329489549001,
+        "elapsed_s": 328.9
+      },
+      {
+        "step": 2500,
+        "train_loss": 6.829667568206787,
+        "val_loss": 6.824284136295319,
+        "elapsed_s": 344.8
+      }
+    ],
+    "train_time_s": 157.3,
+    "s_per_step": 0.063,
+    "gpu_mem_gb": 1.1,
+    "teacher_forced_masked_recovery": 0.06985304944488618
+  },
+  "ar": {
+    "n_params": 17440512,
+    "best_val_loss": 5.036582012971242,
+    "history": [
+      {
+        "step": 250,
+        "train_loss": 6.395520210266113,
+        "val_loss": 6.315670112768809,
+        "elapsed_s": 359.2
+      },
+      {
+        "step": 500,
+        "train_loss": 5.85179328918457,
+        "val_loss": 5.8756986657778425,
+        "elapsed_s": 372.8
+      },
+      {
+        "step": 750,
+        "train_loss": 5.679774284362793,
+        "val_loss": 5.637509922186534,
+        "elapsed_s": 386.6
+      },
+      {
+        "step": 1000,
+        "train_loss": 5.446424961090088,
+        "val_loss": 5.462317029635112,
+        "elapsed_s": 400.5
+      },
+      {
+        "step": 1250,
+        "train_loss": 5.276730060577393,
+        "val_loss": 5.315011998017629,
+        "elapsed_s": 414.3
+      },
+      {
+        "step": 1500,
+        "train_loss": 5.168426513671875,
+        "val_loss": 5.201051712036133,
+        "elapsed_s": 428.1
+      },
+      {
+        "step": 1750,
+        "train_loss": 5.033954620361328,
+        "val_loss": 5.118369102478027,
+        "elapsed_s": 441.9
+      },
+      {
+        "step": 2000,
+        "train_loss": 5.084594249725342,
+        "val_loss": 5.068147202332814,
+        "elapsed_s": 455.6
+      },
+      {
+        "step": 2250,
+        "train_loss": 5.019650936126709,
+        "val_loss": 5.041716118653615,
+        "elapsed_s": 469.4
+      },
+      {
+        "step": 2500,
+        "train_loss": 5.08310079574585,
+        "val_loss": 5.036582012971242,
+        "elapsed_s": 483.2
+      }
+    ],
+    "train_time_s": 137.7,
+    "s_per_step": 0.055,
+    "gpu_mem_gb": 1.37,
+    "val_ppl": 153.94293979947935
+  },
+  "infill_comparison": {
+    "1": {
+      "diffusion_token_recovery": 0.0,
+      "ar_token_recovery": 0.0938,
+      "diffusion_span_exact": 0.0,
+      "ar_span_exact": 0.0938
+    },
+    "2": {
+      "diffusion_token_recovery": 0.1094,
+      "ar_token_recovery": 0.1719,
+      "diffusion_span_exact": 0.0,
+      "ar_span_exact": 0.0938
+    },
+    "4": {
+      "diffusion_token_recovery": 0.0469,
+      "ar_token_recovery": 0.1562,
+      "diffusion_span_exact": 0.0,
+      "ar_span_exact": 0.0
+    },
+    "8": {
+      "diffusion_token_recovery": 0.043,
+      "ar_token_recovery": 0.0469,
+      "diffusion_span_exact": 0.0,
+      "ar_span_exact": 0.0
+    },
+    "16": {
+      "diffusion_token_recovery": 0.0469,
+      "ar_token_recovery": 0.0215,
+      "diffusion_span_exact": 0.0,
+      "ar_span_exact": 0.0
+    }
+  },
+  "speed_bench": {
+    "ar": {
+      "tokens": 64,
+      "forward_passes": 64,
+      "time_s": 0.27,
+      "tokens_per_s": 234.0,
+      "tokens_per_forward": 1.0
+    },
+    "diffusion": {
+      "tokens": 64,
+      "forward_passes": 10,
+      "time_s": 0.06,
+      "tokens_per_s": 1089.4,
+      "tokens_per_forward": 6.4
+    }
+  },
+  "generation_samples": [
+    {
+      "prompt": "The city was founded in the year",
+      "diffusion_completion": ", the the the the the , the the the , the the the the the , the the , the , the the the the the the of the the the the the"
+    },
+    {
+      "prompt": "The study found that patients treated with",
+      "diffusion_completion": "the the of the the of the the of the the , the the of the the of the the of the the the of the the , the the of the , the"
+    },
+    {
+      "prompt": "In economics, inflation is defined as",
+      "diffusion_completion": "the . . = = \n = = = = = = = = = , the = = = = = = = = = = = = = = = = ="
+    }
+  ]
+}

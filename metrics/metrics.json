@@ -1,0 +1,586 @@
+{
+  "config": {
+    "experiment": "E7 generalization upgrade: dropout+EMA+WikiText-103+TinyStories (v4)",
+    "changes_vs_v2": [
+      "dropout 0.0 -> 0.1 (both models)",
+      "EMA 0.999 for eval/checkpoints",
+      "TinyStories mixed into training stream (~20% tokens)",
+      "OOD evals: TinyStories val + FineWeb-Edu probe",
+      "improved diffusion sampler: temp 0.8 + top-p 0.95 + remask-refine"
+    ],
+    "vocab_size_bpe": 8192,
+    "special_tokens": [
+      "[MASK]",
+      "<|eos|>"
+    ],
+    "block_size": 256,
+    "batch_size": 32,
+    "steps_per_model": 12000,
+    "eval_every": 500,
+    "val_batches": 24,
+    "val_batch_size": 32,
+    "lr": 0.0004,
+    "warmup": 400,
+    "weight_decay": 0.1,
+    "grad_clip": 1.0,
+    "mask_ratio_min": 0.05,
+    "mask_ratio_max": 1.0,
+    "d_model": 384,
+    "n_layer": 8,
+    "n_head": 8,
+    "dropout": 0.1,
+    "rel_pos_bias": true,
+    "ema_decay": 0.999,
+    "tinystories_train_stories": 150000,
+    "tinystories_val_stories": 2000,
+    "fineweb_probe_docs": 3000,
+    "seed": 42,
+    "amp": "fp16"
+  },
+  "environment": {
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130",
+    "cuda": "13.0",
+    "params_note": "both models architecture-matched; evals use EMA weights"
+  },
+  "data": {
+    "cache_source": "diffuchat-token-cache",
+    "wikitext_train_tokens": 135430574,
+    "wikitext_val_tokens": 282494,
+    "tinystories_cache": "diffuchat-token-cache",
+    "tinystories_train_tokens": 40264088,
+    "tinystories_val_tokens": 466490,
+    "fineweb_cache": "diffuchat-token-cache",
+    "fineweb_probe_tokens": 659038,
+    "train_tokens_total": 175694662,
+    "train_mix": {
+      "wikitext_frac": 0.771,
+      "tinystories_frac": 0.229
+    },
+    "tokenizer": "byte-level BPE (v1/v2 reuse)",
+    "vocab_total": 8192
+  },
+  "diffusion": {
+    "n_params": 17473216,
+    "best_val_loss_ema": 5.675571282704671,
+    "history": [
+      {
+        "step": 500,
+        "train_loss": 6.928627014160156,
+        "val_loss": 7.1389719645182295,
+        "gap": -0.2103,
+        "elapsed_s": 72.4
+      },
+      {
+        "step": 1000,
+        "train_loss": 6.593464374542236,
+        "val_loss": 6.99753737449646,
+        "gap": -0.4041,
+        "elapsed_s": 130.2
+      },
+      {
+        "step": 1500,
+        "train_loss": 6.656082630157471,
+        "val_loss": 6.848390022913615,
+        "gap": -0.1923,
+        "elapsed_s": 188.5
+      },
+      {
+        "step": 2000,
+        "train_loss": 6.14071798324585,
+        "val_loss": 6.617010295391083,
+        "gap": -0.4763,
+        "elapsed_s": 247.3
+      },
+      {
+        "step": 2500,
+        "train_loss": 6.212076187133789,
+        "val_loss": 6.371889412403107,
+        "gap": -0.1598,
+        "elapsed_s": 306.0
+      },
+      {
+        "step": 3000,
+        "train_loss": 5.934576511383057,
+        "val_loss": 6.231974999109904,
+        "gap": -0.2974,
+        "elapsed_s": 365.1
+      },
+      {
+        "step": 3500,
+        "train_loss": 6.054529666900635,
+        "val_loss": 6.13686986764272,
+        "gap": -0.0823,
+        "elapsed_s": 423.9
+      },
+      {
+        "step": 4000,
+        "train_loss": 5.606131553649902,
+        "val_loss": 6.063223739465077,
+        "gap": -0.4571,
+        "elapsed_s": 482.9
+      },
+      {
+        "step": 4500,
+        "train_loss": 5.70350456237793,
+        "val_loss": 6.003063062826793,
+        "gap": -0.2996,
+        "elapsed_s": 542.0
+      },
+      {
+        "step": 5000,
+        "train_loss": 5.860145092010498,
+        "val_loss": 5.952698886394501,
+        "gap": -0.0926,
+        "elapsed_s": 601.0
+      },
+      {
+        "step": 5500,
+        "train_loss": 5.362537860870361,
+        "val_loss": 5.908184389273326,
+        "gap": -0.5456,
+        "elapsed_s": 660.0
+      },
+      {
+        "step": 6000,
+        "train_loss": 5.675760746002197,
+        "val_loss": 5.870321909586589,
+        "gap": -0.1946,
+        "elapsed_s": 718.8
+      },
+      {
+        "step": 6500,
+        "train_loss": 5.318487167358398,
+        "val_loss": 5.835960169633229,
+        "gap": -0.5175,
+        "elapsed_s": 777.7
+      },
+      {
+        "step": 7000,
+        "train_loss": 5.012592792510986,
+        "val_loss": 5.806490341822307,
+        "gap": -0.7939,
+        "elapsed_s": 836.7
+      },
+      {
+        "step": 7500,
+        "train_loss": 5.128297328948975,
+        "val_loss": 5.7802764773368835,
+        "gap": -0.652,
+        "elapsed_s": 895.7
+      },
+      {
+        "step": 8000,
+        "train_loss": 5.250533103942871,
+        "val_loss": 5.7578266859054565,
+        "gap": -0.5073,
+        "elapsed_s": 954.7
+      },
+      {
+        "step": 8500,
+        "train_loss": 5.043292999267578,
+        "val_loss": 5.738849103450775,
+        "gap": -0.6956,
+        "elapsed_s": 1013.7
+      },
+      {
+        "step": 9000,
+        "train_loss": 5.445677280426025,
+        "val_loss": 5.723072210947673,
+        "gap": -0.2774,
+        "elapsed_s": 1072.9
+      },
+      {
+        "step": 9500,
+        "train_loss": 5.630971431732178,
+        "val_loss": 5.709276636441548,
+        "gap": -0.0783,
+        "elapsed_s": 1132.0
+      },
+      {
+        "step": 10000,
+        "train_loss": 5.257178783416748,
+        "val_loss": 5.697418948014577,
+        "gap": -0.4402,
+        "elapsed_s": 1191.1
+      },
+      {
+        "step": 10500,
+        "train_loss": 5.4356842041015625,
+        "val_loss": 5.688495059808095,
+        "gap": -0.2528,
+        "elapsed_s": 1250.0
+      },
+      {
+        "step": 11000,
+        "train_loss": 5.230808734893799,
+        "val_loss": 5.682118793328603,
+        "gap": -0.4513,
+        "elapsed_s": 1308.8
+      },
+      {
+        "step": 11500,
+        "train_loss": 5.421971321105957,
+        "val_loss": 5.678082386652629,
+        "gap": -0.2561,
+        "elapsed_s": 1367.7
+      },
+      {
+        "step": 12000,
+        "train_loss": 5.474690914154053,
+        "val_loss": 5.675571282704671,
+        "gap": -0.2009,
+        "elapsed_s": 1426.8
+      }
+    ],
+    "train_time_s": 1408.8,
+    "s_per_step": 0.117,
+    "gpu_mem_gb": 2.11
+  },
+  "ar": {
+    "n_params": 17440512,
+    "best_val_loss_ema": 3.5753506819407144,
+    "history": [
+      {
+        "step": 500,
+        "train_loss": 5.339041709899902,
+        "val_loss": 5.726804296175639,
+        "gap": -0.3878,
+        "elapsed_s": 1478.7
+      },
+      {
+        "step": 1000,
+        "train_loss": 4.730074882507324,
+        "val_loss": 5.072377661863963,
+        "gap": -0.3423,
+        "elapsed_s": 1529.6
+      },
+      {
+        "step": 1500,
+        "train_loss": 4.0978827476501465,
+        "val_loss": 4.730841835339864,
+        "gap": -0.633,
+        "elapsed_s": 1580.4
+      },
+      {
+        "step": 2000,
+        "train_loss": 4.112605571746826,
+        "val_loss": 4.50229008992513,
+        "gap": -0.3897,
+        "elapsed_s": 1631.5
+      },
+      {
+        "step": 2500,
+        "train_loss": 4.01441764831543,
+        "val_loss": 4.31832089026769,
+        "gap": -0.3039,
+        "elapsed_s": 1682.8
+      },
+      {
+        "step": 3000,
+        "train_loss": 4.002464294433594,
+        "val_loss": 4.167568206787109,
+        "gap": -0.1651,
+        "elapsed_s": 1733.9
+      },
+      {
+        "step": 3500,
+        "train_loss": 3.53324818611145,
+        "val_loss": 4.0554538667202,
+        "gap": -0.5222,
+        "elapsed_s": 1785.0
+      },
+      {
+        "step": 4000,
+        "train_loss": 3.606009006500244,
+        "val_loss": 3.9690334598223367,
+        "gap": -0.363,
+        "elapsed_s": 1836.7
+      },
+      {
+        "step": 4500,
+        "train_loss": 3.5608034133911133,
+        "val_loss": 3.8978721102078757,
+        "gap": -0.3371,
+        "elapsed_s": 1888.2
+      },
+      {
+        "step": 5000,
+        "train_loss": 3.350715160369873,
+        "val_loss": 3.8400998214880624,
+        "gap": -0.4894,
+        "elapsed_s": 1939.4
+      },
+      {
+        "step": 5500,
+        "train_loss": 3.552724838256836,
+        "val_loss": 3.7933448354403176,
+        "gap": -0.2406,
+        "elapsed_s": 1990.5
+      },
+      {
+        "step": 6000,
+        "train_loss": 3.520404815673828,
+        "val_loss": 3.7545355757077536,
+        "gap": -0.2341,
+        "elapsed_s": 2041.9
+      },
+      {
+        "step": 6500,
+        "train_loss": 3.2279114723205566,
+        "val_loss": 3.722408354282379,
+        "gap": -0.4945,
+        "elapsed_s": 2093.4
+      },
+      {
+        "step": 7000,
+        "train_loss": 3.3726248741149902,
+        "val_loss": 3.6937465369701385,
+        "gap": -0.3211,
+        "elapsed_s": 2145.1
+      },
+      {
+        "step": 7500,
+        "train_loss": 2.9313230514526367,
+        "val_loss": 3.6691173911094666,
+        "gap": -0.7378,
+        "elapsed_s": 2196.7
+      },
+      {
+        "step": 8000,
+        "train_loss": 3.200880765914917,
+        "val_loss": 3.648658901453018,
+        "gap": -0.4478,
+        "elapsed_s": 2248.4
+      },
+      {
+        "step": 8500,
+        "train_loss": 3.427053213119507,
+        "val_loss": 3.6313769121964774,
+        "gap": -0.2043,
+        "elapsed_s": 2300.0
+      },
+      {
+        "step": 9000,
+        "train_loss": 3.3222408294677734,
+        "val_loss": 3.617166578769684,
+        "gap": -0.2949,
+        "elapsed_s": 2351.5
+      },
+      {
+        "step": 9500,
+        "train_loss": 3.050293445587158,
+        "val_loss": 3.6053386429945626,
+        "gap": -0.555,
+        "elapsed_s": 2403.1
+      },
+      {
+        "step": 10000,
+        "train_loss": 3.07889723777771,
+        "val_loss": 3.595216155052185,
+        "gap": -0.5163,
+        "elapsed_s": 2454.9
+      },
+      {
+        "step": 10500,
+        "train_loss": 3.1907236576080322,
+        "val_loss": 3.587349226077398,
+        "gap": -0.3966,
+        "elapsed_s": 2506.6
+      },
+      {
+        "step": 11000,
+        "train_loss": 3.335998296737671,
+        "val_loss": 3.5815330346425376,
+        "gap": -0.2455,
+        "elapsed_s": 2558.2
+      },
+      {
+        "step": 11500,
+        "train_loss": 3.454362154006958,
+        "val_loss": 3.577622006336848,
+        "gap": -0.1233,
+        "elapsed_s": 2609.8
+      },
+      {
+        "step": 12000,
+        "train_loss": 3.2025272846221924,
+        "val_loss": 3.5753506819407144,
+        "gap": -0.3728,
+        "elapsed_s": 2661.5
+      }
+    ],
+    "train_time_s": 1234.2,
+    "s_per_step": 0.103,
+    "gpu_mem_gb": 2.19,
+    "val_ppl_ema": 35.71
+  },
+  "generalization": {
+    "wikitext_val_in_domain": {
+      "tokens": 282494,
+      "diffusion_masked_ce": 5.6725,
+      "diffusion_recovery": 0.155,
+      "ar_ce": 3.5854,
+      "ar_ppl": 36.07
+    },
+    "tinystories_ood": {
+      "tokens": 466490,
+      "diffusion_masked_ce": 4.0542,
+      "diffusion_recovery": 0.2983,
+      "ar_ce": 1.8822,
+      "ar_ppl": 6.57
+    },
+    "fineweb_edu_ood": {
+      "tokens": 659038,
+      "diffusion_masked_ce": 6.8227,
+      "diffusion_recovery": 0.0747,
+      "ar_ce": 5.0122,
+      "ar_ppl": 150.24
+    }
+  },
+  "infill_comparison": {
+    "1": {
+      "diffusion_token_recovery": 0.2812,
+      "ar_token_recovery": 0.25,
+      "diffusion_span_exact": 0.2812,
+      "ar_span_exact": 0.25
+    },
+    "2": {
+      "diffusion_token_recovery": 0.2812,
+      "ar_token_recovery": 0.3281,
+      "diffusion_span_exact": 0.1562,
+      "ar_span_exact": 0.1875
+    },
+    "4": {
+      "diffusion_token_recovery": 0.1562,
+      "ar_token_recovery": 0.1562,
+      "diffusion_span_exact": 0.0,
+      "ar_span_exact": 0.0312
+    },
+    "8": {
+      "diffusion_token_recovery": 0.0703,
+      "ar_token_recovery": 0.0703,
+      "diffusion_span_exact": 0.0,
+      "ar_span_exact": 0.0
+    },
+    "16": {
+      "diffusion_token_recovery": 0.0586,
+      "ar_token_recovery": 0.0312,
+      "diffusion_span_exact": 0.0,
+      "ar_span_exact": 0.0
+    }
+  },
+  "speed_bench": {
+    "ar": {
+      "tokens": 64,
+      "forward_passes": 64,
+      "time_s": 0.29,
+      "tokens_per_s": 222.7,
+      "tokens_per_forward": 1.0
+    },
+    "diffusion_greedy_10pass": {
+      "tokens": 64,
+      "forward_passes": 10,
+      "time_s": 0.04,
+      "tokens_per_s": 1522.5,
+      "tokens_per_forward": 6.4
+    },
+    "diffusion_sampled_24pass_refine": {
+      "tokens": 64,
+      "forward_passes": 32,
+      "time_s": 0.14,
+      "tokens_per_s": 454.1,
+      "tokens_per_forward": 2.0
+    }
+  },
+  "generation_samples": {
+    "greedy_v2_style": [
+      {
+        "prompt": "The city was founded in the year",
+        "completion": ". the end of the the first part of the end of the city of the the end of the the the the end of the the the the the end of the . of the first part of the first part of the end of the the",
+        "coherence": {
+          "dup_bigram_rate": 0.1818,
+          "distinct_token_ratio": 0.2321,
+          "top_token_share": 0.4107
+        }
+      },
+      {
+        "prompt": "Once upon a time, there was a little girl named",
+        "completion": "Lily... Sheily to to to toys.... day, Lilyily to to toys with.... Theyily went to to the park. One day day, theyilyily and to to",
+        "coherence": {
+          "dup_bigram_rate": 0.3,
+          "distinct_token_ratio": 0.4426,
+          "top_token_share": 0.1967
+        }
+      },
+      {
+        "prompt": "The study found that patients treated with",
+        "completion": "the woods...\n wasnce and there was a lot of fun....\n wasnce and the little who lived in the world.\n\nThe end, the walked in the world..",
+        "coherence": {
+          "dup_bigram_rate": 0.125,
+          "distinct_token_ratio": 0.5614,
+          "top_token_share": 0.1754
+        }
+      },
+      {
+        "prompt": "In economics, inflation is defined as",
+        "completion": "a number of the . . . The = = of the world is one of the number of of the end of . the the end of the end of the the the the end of the the the the , of the translation of the",
+        "coherence": {
+          "dup_bigram_rate": 0.1897,
+          "distinct_token_ratio": 0.3898,
+          "top_token_share": 0.2881
+        }
+      }
+    ],
+    "improved_temp_top_p": [
+      {
+        "prompt": "The city was founded in the year",
+        "completion": "of the northern end of the end of the end of the north of south of the north of one of the north of the east side of the south of the city . At the end of the eastern side of the eastern end of the east",
+        "coherence": {
+          "dup_bigram_rate": 0.0,
+          "distinct_token_ratio": 0.3393,
+          "top_token_share": 0.25
+        }
+      },
+      {
+        "prompt": "Once upon a time, there was a little girl named",
+        "completion": "Lilyily. She liked to play with her friends. Lily had a little girl named Lily. One day, Lily loved to play to play with her. One day, Lily and Lily to play with her",
+        "coherence": {
+          "dup_bigram_rate": 0.0167,
+          "distinct_token_ratio": 0.459,
+          "top_token_share": 0.1148
+        }
+      },
+      {
+        "prompt": "The study found that patients treated with",
+        "completion": "their blocks. They. They like to their friends. They like to play with them. They say. They have fun with their toys and They are friends.\n\nTom and Ben are friends with their friends. They are",
+        "coherence": {
+          "dup_bigram_rate": 0.0179,
+          "distinct_token_ratio": 0.4912,
+          "top_token_share": 0.1228
+        }
+      },
+      {
+        "prompt": "In economics, inflation is defined as",
+        "completion": "the conclusion of the end of . \n = = = = \n = = = \n World War = Battle of the United States the war . In the time the end of the end of the Uniteds of the war in the United",
+        "coherence": {
+          "dup_bigram_rate": 0.0862,
+          "distinct_token_ratio": 0.4915,
+          "top_token_share": 0.1695
+        }
+      }
+    ]
+  },
+  "coherence_summary": {
+    "greedy_v2_style": {
+      "dup_bigram_rate": 0.1991,
+      "distinct_token_ratio": 0.4065,
+      "top_token_share": 0.2677
+    },
+    "improved_temp_top_p": {
+      "dup_bigram_rate": 0.0302,
+      "distinct_token_ratio": 0.4453,
+      "top_token_share": 0.1643
+    }
+  }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    @page { size: 794px 1123px; margin: 0; }
+    :root {
+      --c-bg: #0a1628;
+      --c-accent: #4da8da;
+      --c-text: #e8f0f8;
+      --c-muted: #7a9bb8;
+      --c-glow: #2d7ab3;
+    }
+    html, body { margin: 0; padding: 0; width: 794px; height: 1123px; background: var(--c-bg); color: var(--c-text); font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+    @media screen {
+      html { height: auto; display: flex; justify-content: center; min-height: 100vh; background: var(--c-bg); }
+      body { transform-origin: top center; scale: min(1, calc(100vw / 794), calc(100vh / 1123)); margin: 0 auto; box-shadow: 0 0 60px rgba(0,0,0,0.3); }
+    }
+    .cover { width: 794px; height: 1123px; position: relative; box-sizing: border-box; border: none; outline: none; box-shadow: none; }
+    /* Layer 1 - background glows (clipped) */
+    .layer-bg { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
+    .glow-a { position: absolute; left: 40px; top: 60px; width: 420px; height: 420px;
+              background: radial-gradient(circle, rgba(45,122,179,0.08) 0%, rgba(45,122,179,0) 70%); }
+    .glow-b { position: absolute; right: 30px; bottom: 80px; width: 460px; height: 460px;
+              background: radial-gradient(circle, rgba(77,168,218,0.07) 0%, rgba(77,168,218,0) 70%); }
+    /* Layer 2 - luminous frame */
+    .layer-frame { position: absolute; inset: 0; z-index: 2; }
+    .frame { position: absolute; left: 60px; right: 60px; top: 80px; bottom: 80px;
+             border: 2px solid var(--c-accent); }
+    /* Layer 3 - content */
+    .layer-content { position: absolute; inset: 0; z-index: 3; }
+    .kicker { position: absolute; left: 90px; top: 135px; font-size: 11pt; color: var(--c-accent);
+              letter-spacing: 5px; text-transform: uppercase; font-weight: 300; }
+    .title { position: absolute; left: 90px; top: 236px; font-size: 50pt; font-weight: 900;
+             line-height: 1.15; font-family: 'Playfair Display', 'Noto Serif SC', serif;
+             color: var(--c-text); max-width: 600px;
+             text-shadow: 0 0 24px rgba(77,168,218,0.35); }
+    .subtitle { position: absolute; left: 90px; top: 360px; font-size: 15pt; font-weight: 400;
+                color: var(--c-accent); letter-spacing: 0.5px; max-width: 560px; line-height: 1.4; }
+    .summary { position: absolute; left: 90px; top: 505px; font-size: 15pt; line-height: 1.7;
+               color: var(--c-muted); max-width: 520px; }
+    .org { position: absolute; left: 90px; top: 719px; font-size: 18pt; color: var(--c-text); }
+    .org-sub { position: absolute; left: 90px; top: 762px; font-size: 11pt; color: var(--c-muted);
+               letter-spacing: 1px; }
+    .date { position: absolute; left: 90px; bottom: 128px; font-size: 10pt; color: var(--c-muted);
+            letter-spacing: 3px; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+  <div class="cover">
+    <div class="layer-bg">
+      <div class="glow-a"></div>
+      <div class="glow-b"></div>
+    </div>
+    <div class="layer-frame">
+      <div class="frame"></div>
+    </div>
+    <div class="layer-content">
+      <div class="kicker">Technical Findings Report</div>
+      <div class="title">DiffuChat</div>
+      <div class="subtitle">Compute-efficient text generation with masked-diffusion language models</div>
+      <div class="summary">
+        A controlled comparison of a 17.5M-parameter masked-diffusion language model and an
+        architecture-matched autoregressive baseline, trained from scratch on WikiText-103 and
+        TinyStories with identical data, tokenizer, schedule and compute on Kaggle free-tier GPUs.
+      </div>
+      <div class="org">DiffuChat Research</div>
+      <div class="org-sub">DenoiseLM E1 vs ARBaseline E2 &middot; kernel diffuchat-generalization-v3</div>
+      <div class="date">November 2026 &middot; Run v4</div>
+    </div>
+  </div>
+</body>
+</html>

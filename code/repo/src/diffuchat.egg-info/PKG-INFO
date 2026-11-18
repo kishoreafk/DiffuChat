@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: diffuchat
+Version: 0.1.0
+Summary: Miniature masked-diffusion language model (LLaDA/MDLM style) with an editable-chat demo
+Requires-Python: >=3.10
+Requires-Dist: torch
+Requires-Dist: numpy
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"

@@ -1,0 +1,14 @@
+{
+  "name": "diffusion-service",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "bun --hot index.ts"
+  },
+  "dependencies": {
+    "onnxruntime-node": "^1.31.1"
+  },
+  "trustedDependencies": [
+    "onnxruntime-node"
+  ]
+}

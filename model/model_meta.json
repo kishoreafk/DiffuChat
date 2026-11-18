@@ -1,0 +1,46 @@
+{
+  "nParams": 17473216,
+  "step": 12000,
+  "valLoss": 5.675571282704671,
+  "exportedFrom": "download/diffuchat-v4/weights/diffusion_best.pt",
+  "blockSize": 256,
+  "vocabSize": 8192,
+  "runConfig": {
+    "experiment": "E7 generalization upgrade: dropout+EMA+WikiText-103+TinyStories (v4)",
+    "changes_vs_v2": [
+      "dropout 0.0 -> 0.1 (both models)",
+      "EMA 0.999 for eval/checkpoints",
+      "TinyStories mixed into training stream (~20% tokens)",
+      "OOD evals: TinyStories val + FineWeb-Edu probe",
+      "improved diffusion sampler: temp 0.8 + top-p 0.95 + remask-refine"
+    ],
+    "vocab_size_bpe": 8192,
+    "special_tokens": [
+      "[MASK]",
+      "<|eos|>"
+    ],
+    "block_size": 256,
+    "batch_size": 32,
+    "steps_per_model": 12000,
+    "eval_every": 500,
+    "val_batches": 24,
+    "val_batch_size": 32,
+    "lr": 0.0004,
+    "warmup": 400,
+    "weight_decay": 0.1,
+    "grad_clip": 1.0,
+    "mask_ratio_min": 0.05,
+    "mask_ratio_max": 1.0,
+    "d_model": 384,
+    "n_layer": 8,
+    "n_head": 8,
+    "dropout": 0.1,
+    "rel_pos_bias": true,
+    "ema_decay": 0.999,
+    "tinystories_train_stories": 150000,
+    "tinystories_val_stories": 2000,
+    "fineweb_probe_docs": 3000,
+    "seed": 42,
+    "amp": "fp16"
+  }
+}
